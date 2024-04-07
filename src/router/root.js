@@ -6,6 +6,7 @@ const Loading = <div>Loading...</div>;
 const Main = lazy(() => import("../pages/MainPage"));
 const About = lazy(() => import("../pages/AboutPage"));
 const TodoIndex = lazy(() => import("../pages/todo/IndexPage"));
+const TodoList = lazy(() => import("../pages/todo/ListPage"));
 
 const root = createBrowserRouter([
   {
@@ -31,6 +32,16 @@ const root = createBrowserRouter([
         <TodoIndex />
       </Suspense>
     ),
+    children: [
+      {
+        path: "list",
+        element: (
+          <Suspense fallback={Loading}>
+            <TodoList />
+          </Suspense>
+        ),
+      },
+    ],
   },
 ]);
 
