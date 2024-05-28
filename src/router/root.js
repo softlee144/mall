@@ -1,3 +1,5 @@
+// 코드 스플링팅을 위해 import 한다.
+// 지연 로딩 : 필요한 페이지만 로딩한다
 import { Suspense, lazy } from "react";
 
 import { createBrowserRouter } from "react-router-dom";
@@ -33,6 +35,7 @@ const root = createBrowserRouter([
         <TodoIndex />
       </Suspense>
     ),
+    // todoRouter 함수를 실행한 결과가 반환된다.
     children: todoRouter(),
   },
 ]);
