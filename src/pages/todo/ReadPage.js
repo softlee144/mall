@@ -10,6 +10,7 @@ import ReadComponent from "../../components/todo/ReadComponent";
 const ReadPage = () => {
   const { tno } = useParams();
 
+  // useNavigate : 동적으로 이동하는 처리
   const navigate = useNavigate();
 
   const [queryParams] = useSearchParams();
@@ -19,6 +20,7 @@ const ReadPage = () => {
 
   const queryStr = createSearchParams({ page, size }).toString();
 
+  // 내가 props로 써야 할 것과 router로 써야 할 것을 구분하면서 공부해야 한다.
   const moveToModify = useCallback(
     (tno) => {
       navigate({

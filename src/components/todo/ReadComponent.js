@@ -9,7 +9,7 @@ import { getOne } from "../../api/todoApi";
 const initState = {
   tno: 0,
   title: "",
-  writer: "",
+  content: "", // 책에서는 writer, api에 어떻게 설정했는지에 따라 달라짐
   dueDate: null,
   complete: false,
 };
@@ -17,8 +17,8 @@ const initState = {
 const ReadComponent = ({ tno }) => {
   const [todo, setTodo] = useState(initState); //아직 todo는 사용하지 않음
 
-  //const { moveToList, moveToModify } = useCustomMove();
-
+  // 어떤 상황이 되었을 때 아래 코드가 동작할 것인가?
+  // 렌더링이 일어나더라도 tno가 바뀌지 않으면 호출하지 않는다.
   useEffect(() => {
     getOne(tno).then((data) => {
       console.log(data);
@@ -26,26 +26,7 @@ const ReadComponent = ({ tno }) => {
     });
   }, [tno]);
 
-  return (
-    <div className="border-2 border-sky-400 mt-10 m-2 p-4 ">
-      {makeDiv("Tno", todo.tno)}
-      {makeDiv("Writer", todo.writer)}
-      {makeDiv("Title", todo.title)}
-      {makeDiv("Due Date", todo.dueDate)}
-      {makeDiv("Complete", todo.complete ? "Completed" : "Not Yet")}
-    </div>
-  );
+  return <div></div>;
 };
-
-const makeDiv = (title, value) => (
-  <div className="flex justify-center">
-    <div className="relative mb-4 flex w-full flex-wrap items-stretch">
-      <div className="w-1/5 p-6 text-right font-bold">{title}</div>
-      <div className="w-4/5 p-6 rounded-r border border-solid shadow-md">
-        {value}
-      </div>
-    </div>
-  </div>
-);
 
 export default ReadComponent;
