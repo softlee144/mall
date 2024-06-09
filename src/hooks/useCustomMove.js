@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   createSearchParams,
   useNavigate,
@@ -15,6 +16,8 @@ const getNum = (param, defaultValue) => {
 // useNavigate를 간단하게 사용하기 위해서 만들었다.
 const useCustomMove = () => {
   const navigate = useNavigate();
+
+  const [refresh, setRefresh] = useState();
 
   const [queryParams] = useSearchParams();
 
@@ -39,6 +42,8 @@ const useCustomMove = () => {
       queryStr = queryDefault;
     }
 
+    setRefresh(!refresh); // 추가
+
     navigate({ pathname: `../list`, search: queryStr });
   };
 
@@ -51,7 +56,7 @@ const useCustomMove = () => {
     });
   };
 
-  return { moveToList, moveToModify, page, size };
+  return { moveToList, moveToModify, page, size, refresh }; //refresh 추가
 };
 
 export default useCustomMove;
