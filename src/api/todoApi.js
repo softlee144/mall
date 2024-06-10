@@ -25,3 +25,11 @@ export const getList = async (pageParam) => {
   // aysnc 함수의 모든 리턴은 비동기, 즉 promise이다.
   return res.data;
 };
+
+export const postAdd = async (todoObj) => {
+  // 기존에는 JSON 데이터를 서버로 보낼 때 JSON.stringfy(obj) 등의 처리가 필요하였음.
+  // axios에서는 그대로 보내면 됨.
+  const res = await axios.post(`${prefix}/`, todoObj);
+
+  return res.data;
+};
